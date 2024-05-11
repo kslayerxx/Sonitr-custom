@@ -376,9 +376,10 @@ class ClassVoices:
         f0method='pm',
         file_index='',
         file_index2='',
-        tempo_speed,
-        shift_mode,
-        speed,
+        tempo_mode='',  
+        tempo_speed='',
+        shift_mode='',
+        speed='',
         ):
 
         #hubert_model = None
