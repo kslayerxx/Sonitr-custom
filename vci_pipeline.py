@@ -270,10 +270,6 @@ class VC(object):
         return audio1
 
     def pipeline(
-        (tempo_mode,
-        tempo_speed,
-        shift_mode,
-        speed,
         self,
         model,
         net_g,
@@ -284,6 +280,10 @@ class VC(object):
         f0_up_key,
         f0_method,
         file_index,
+        tempo_mode,
+        tempo_speed,
+        shift_mode,
+        speed,
         # file_big_npy,
         index_rate,
         if_f0,
