@@ -12,6 +12,7 @@ from lib.audio import load_audio
 import numpy as np
 import os, shutil
 from fairseq import checkpoint_utils
+from main_program import apply_shift, change_tempo, change_speed
 import soundfile as sf
 from gtts import gTTS
 import edge_tts
@@ -154,6 +155,10 @@ def vc_single(
             f0_up_key,
             f0_method,
             file_index,
+            tempo_mode,
+            tempo_speed,
+            shift_mode,
+            speed,
             # file_big_npy,
             index_rate,
             if_f0,
@@ -165,6 +170,12 @@ def vc_single(
             protect,
             f0_file=f0_file,
         )
+        if tempo_mode:
+            audio_output_ = change_tempo(audio_output_, ...)
+        if shift_mode:
+            entries = apply_shift(entries, ...)
+        if speed:
+            audio_output_ = change_speed(audio_output_, speed)
         if tgt_sr != resample_sr >= 16000:
             tgt_sr = resample_sr
         index_info = (
@@ -365,6 +376,9 @@ class ClassVoices:
         f0method='pm',
         file_index='',
         file_index2='',
+        tempo_speed,
+        shift_mode,
+        speed,
         ):
 
         #hubert_model = None
