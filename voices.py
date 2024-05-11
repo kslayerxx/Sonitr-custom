@@ -13,7 +13,8 @@ import traceback, pdb
 from lib.audio import load_audio
 import numpy as np  
 import os, shutil
-from fairseq import checkpoint_utils
+from fairseq import 
+import audio_utils
 from audio_utils import apply_shift, change_tempo, change_speed
 import soundfile as sf
 from gtts import gTTS
