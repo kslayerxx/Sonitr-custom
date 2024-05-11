@@ -1,3 +1,5 @@
+from voices import ClassVoices
+
 def generate_inference(sid, to_return_protect0, to_return_protect1):
     global n_spk, tgt_sr, net_g, vc, cpt, version
     if sid == "" or sid == []:
