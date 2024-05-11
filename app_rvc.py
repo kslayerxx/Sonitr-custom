@@ -65,7 +65,7 @@ import copy
 import logging
 import json
 from pydub import AudioSegment
-from voice_main import ClassVoices
+from voices import ClassVoices
 import argparse
 import time
 import hashlib
