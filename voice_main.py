@@ -12,7 +12,7 @@ from lib.audio import load_audio
 import numpy as np
 import os, shutil
 from fairseq import checkpoint_utils
-from main_program import apply_shift, change_tempo, change_speed
+from app_rvc import apply_shift, change_tempo, change_speed
 import soundfile as sf
 from gtts import gTTS
 import edge_tts
