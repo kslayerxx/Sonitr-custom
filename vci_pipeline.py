@@ -4,7 +4,6 @@ import torch.nn.functional as F
 import scipy.signal as signal
 import pyworld, os, traceback, faiss, librosa, torchcrepe
 from scipy import signal
-from main_program import apply_shift, change_tempo, change_speed
 from functools import lru_cache
 from soni_translate.logging_setup import logger
 
