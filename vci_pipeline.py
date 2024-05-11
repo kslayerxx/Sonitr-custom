@@ -4,6 +4,7 @@ import torch.nn.functional as F
 import scipy.signal as signal
 import pyworld, os, traceback, faiss, librosa, torchcrepe
 from scipy import signal
+from main_program import apply_shift, change_tempo, change_speed
 from functools import lru_cache
 from soni_translate.logging_setup import logger
 
@@ -247,6 +248,7 @@ class VC(object):
             feats = feats * pitchff + feats0 * (1 - pitchff)
             feats = feats.to(feats0.dtype)
         p_len = torch.tensor([p_len], device=self.device).long()
+        
         with torch.no_grad():
             if pitch != None and pitchf != None:
                 audio1 = (
@@ -268,6 +270,10 @@ class VC(object):
         return audio1
 
     def pipeline(
+        (tempo_mode,
+        tempo_speed,
+        shift_mode,
+        speed,
         self,
         model,
         net_g,
@@ -432,6 +438,12 @@ class VC(object):
                 )[self.t_pad_tgt : -self.t_pad_tgt]
             )
         audio_opt = np.concatenate(audio_opt)
+        if tempo_mode:
+            audio_opt = change_tempo(audio_opt, tempo_mode, tempo_speed)
+        if shift_mode:
+            entries = apply_shift(entries, shift_mode)
+        if speed:
+            audio_opt = change_speed(audio_opt, speed)
         if rms_mix_rate != 1:
             audio_opt = change_rms(audio, 16000, audio_opt, tgt_sr, rms_mix_rate)
         if resample_sr >= 16000 and tgt_sr != resample_sr:
